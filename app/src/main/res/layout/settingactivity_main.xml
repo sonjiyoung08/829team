@@ -99,4 +99,37 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="169dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="환경설정"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/btn_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="사용자 문자 설정"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vibration2" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="테스트"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/btn_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/btn_dialog" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

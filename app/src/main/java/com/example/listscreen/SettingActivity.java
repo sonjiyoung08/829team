@@ -1,7 +1,9 @@
 package com.example.listscreen;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,17 +13,15 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends ListActivity {
     Button btn_dialog;
     TextView tv_result;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settingactivity_main);
-
         btn_dialog = (Button)findViewById(R.id.btn_dialog);
         tv_result = (TextView)findViewById(R.id.tv_content);
-
         btn_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,9 +30,9 @@ public class SettingActivity extends AppCompatActivity {
                 ad.setTitle("사용자 문자 설정");
                 ad.setMessage("문자를 입력하세요");
 
-
                 final EditText et = new EditText(SettingActivity.this);
                 /// dialog 안에다가 et 객체를 view로 추가하기
+
                 ad.setView(et);
 
                 ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -40,6 +40,9 @@ public class SettingActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String result = et.getText().toString();
                         tv_result.setText(result);
+                        Intent intent =new Intent(SettingActivity.this, CameraActivity.class);
+                        intent.putExtra("text",result);
+                        startActivity(intent);
                         dialog.dismiss();
                     }
                 });

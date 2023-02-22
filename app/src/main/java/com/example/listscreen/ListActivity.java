@@ -13,7 +13,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.listactivity_main);
 
         Button imageButton = (Button) findViewById(R.id.setting);
         imageButton.setOnClickListener(new View.OnClickListener() {

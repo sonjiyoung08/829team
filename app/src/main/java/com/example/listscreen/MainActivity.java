@@ -43,11 +43,9 @@ import android.widget.Toast;
             //회원가입 완료 버튼
             submit = findViewById(R.id.signupbutton);
             submit.setOnClickListener(v -> {
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, Signup.class);
                 startActivity(intent);
             });
-
-
 
         }
     }

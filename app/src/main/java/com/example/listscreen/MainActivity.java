@@ -1,51 +1,28 @@
 package com.example.listscreen;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-    public class Signup extends AppCompatActivity {
-        TextView back;
-        EditText name,id,pw,pw2;
-        Button pwcheck, submit;
+public class MainActivity extends AppCompatActivity {
+    TextView sign;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_signup);
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-            //뒤로 가기 버튼
-            back = findViewById(R.id.back);
-            back.setOnClickListener(v -> onBackPressed() );
+        //회원가입 버튼
+        sign = findViewById(R.id.signin);
 
-            //기입 항목
-            id=findViewById(R.id.signID);
-            pw=findViewById(R.id.signPW);
-            pw2=findViewById(R.id.signPW2);
-
-
-            //비밀번호 확인 버튼
-            pwcheck = findViewById(R.id.pwcheckbutton);
-            pwcheck.setOnClickListener(v -> {
-                if(pw.getText().toString().equals(pw2.getText().toString())){
-                    pwcheck.setText("일치");
-                }else{
-                    Toast.makeText(Signup.this, "비밀번호가 다릅니다.", Toast.LENGTH_LONG).show();
-                }
-            });
-
-            //회원가입 완료 버튼
-            submit = findViewById(R.id.signupbutton);
-            submit.setOnClickListener(v -> {
-                Intent intent = new Intent(this, Signup.class);
-                startActivity(intent);
-            });
-
-        }
+        //회원가입 버튼 클릭시, 회원가입 페이지로 이동
+        sign.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Signup.class);
+            startActivity(intent);
+        });
     }
+}

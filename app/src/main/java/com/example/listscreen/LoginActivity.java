@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.listscreen.ListActivity;
+import com.example.listscreen.SignupActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -17,66 +20,66 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class LoginActivity extends AppCompatActivity
-{
-    private FirebaseAuth mFirebaseAuth;  // 파이어베이스 인증
-    private DatabaseReference mDatabaseRef; // 실시간 데이터베이스
-    private EditText mEtId, mEtPasswd;
-    private Button mBtnSignup, mBtnLogin;
+public class LoginActivity extends AppCompatActivity {
+    private EditText mEmailField;
+    private EditText mPasswordField;
+    private Button mLoginButton;
 
+    private FirebaseAuth mAuth;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loginactivity_main);
+        setContentView(R.layout.activity_login);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference();
-
-        mEtId = findViewById(R.id.et_id);
-        mEtPasswd = findViewById(R.id.et_passwd);
-        mBtnSignup = findViewById(R.id.btn_signup);
-        mBtnLogin = findViewById(R.id.btn_login);
-
-        mBtnLogin.setOnClickListener(new View.OnClickListener()
-        {
+        mEmailField = findViewById(R.id.email_field);
+        mPasswordField = findViewById(R.id.password_field);
+        mLoginButton = findViewById(R.id.login_button);
+        // 회원가입 버튼을 눌렀을 때의 동작을 정의합니다.
+        Button btnSignup = findViewById(R.id.btn_signup);
+        btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
-                // 로그인 요청
-                String strId = mEtId.getText().toString();
-                String strPasswd = mEtPasswd.getText().toString();
-
-                mFirebaseAuth.signInWithEmailAndPassword(strId, strPasswd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>()
-                {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
-                    {
-                        if(task.isSuccessful())
-                        {
-                            // 로그인 성공
-                            Intent intent = new Intent(LoginActivity.this, ListActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else{
-                            Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        });
-
-        // 회원가입 화면으로 이동
-        mBtnSignup.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
+            public void onClick(View v) {
+                // 회원가입 화면으로 전환하는 인텐트를 생성합니다.
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(intent);
             }
         });
 
+        mAuth = FirebaseAuth.getInstance();
+
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = mEmailField.getText().toString().trim();
+                String password = mPasswordField.getText().toString().trim();
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), ListActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
     }
 }

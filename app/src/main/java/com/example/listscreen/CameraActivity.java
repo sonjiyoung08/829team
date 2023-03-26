@@ -48,7 +48,7 @@ public class CameraActivity extends ListActivity {
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              String phoneNo="tel:"+"01099066798";
+              String phoneNo="tel:"+"01028908038";
               Intent tt=new Intent("android.intent.action.CALL", Uri.parse(phoneNo));
               startActivity(tt);
             }
@@ -57,7 +57,7 @@ public class CameraActivity extends ListActivity {
             @Override
             public void onClick(View view) {
                Intent intent=getIntent();
-                String phoneNo = "01099066798";
+                String phoneNo = "01028908038";
                 String text = intent.getStringExtra("text");
 
                 try{

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "980743312103",
+    "project_id": "listscreen-d47bf",
+    "storage_bucket": "listscreen-d47bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980743312103:android:2a7bbf344f39c4b55dc842",
+        "android_client_info": {
+          "package_name": "com.example.listscreen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980743312103-7tkmnf7uenftbkthgi9capr3hk9gnhhh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzIUVTtOSSlybn3xs7ZH880P1v4KIBxbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980743312103-7tkmnf7uenftbkthgi9capr3hk9gnhhh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

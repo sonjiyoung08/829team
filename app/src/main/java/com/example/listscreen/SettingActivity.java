@@ -13,7 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SettingActivity extends ListActivity {
+public class SettingActivity extends AppCompatActivity {
+    public static Context context_main;
+    public String result;
     Button btn_dialog;
     TextView tv_result;
     @Override
@@ -22,6 +24,7 @@ public class SettingActivity extends ListActivity {
         setContentView(R.layout.settingactivity_main);
         btn_dialog = (Button)findViewById(R.id.btn_dialog);
         tv_result = (TextView)findViewById(R.id.tv_content);
+        context_main=this;
         btn_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,24 +32,20 @@ public class SettingActivity extends ListActivity {
                 ad.setIcon(R.mipmap.ic_launcher);
                 ad.setTitle("사용자 문자 설정");
                 ad.setMessage("문자를 입력하세요");
-
                 final EditText et = new EditText(SettingActivity.this);
                 /// dialog 안에다가 et 객체를 view로 추가하기
 
                 ad.setView(et);
-
                 ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String result = et.getText().toString();
+                        result = et.getText().toString();
                         tv_result.setText(result);
-                        Intent intent =new Intent(SettingActivity.this, CameraActivity.class);
-                        intent.putExtra("text",result);
-                        startActivity(intent);
                         dialog.dismiss();
+
+
                     }
                 });
-
                 ad.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -58,4 +57,5 @@ public class SettingActivity extends ListActivity {
         });
 
     }
+
 }

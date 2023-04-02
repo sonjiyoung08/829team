@@ -15,7 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CameraActivity extends ListActivity {
+public class CameraActivity extends AppCompatActivity {
     private WebView mwebView;
     private WebSettings mwebSettings;
     public Button call, sms;
@@ -48,7 +48,7 @@ public class CameraActivity extends ListActivity {
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              String phoneNo="tel:"+"01028908038";
+              String phoneNo="tel:"+"01099066798";
               Intent tt=new Intent("android.intent.action.CALL", Uri.parse(phoneNo));
               startActivity(tt);
             }
@@ -56,9 +56,8 @@ public class CameraActivity extends ListActivity {
         sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent=getIntent();
-                String phoneNo = "01028908038";
-                String text = intent.getStringExtra("text");
+                String phoneNo = "01099066798";
+                String text = ((SettingActivity)SettingActivity.context_main).result;
 
                 try{
                     SmsManager smsManager=SmsManager.getDefault();
